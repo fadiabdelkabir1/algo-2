@@ -1,0 +1,157 @@
+//Problem 1
+    // first sol
+ALGORITHM okay 
+VAR
+    setone, settwo: ARRAY_OF INTEGER;
+    i, j,: INTEGER; 
+    somme: INTEGER :=0 ;
+    present : BOOLEAN ;
+
+BEGIN
+    FOR i FROM 0 TO setone.length-1 DO
+        present := FALSE;
+        FOR j FROM 0 TO settwo.length-1 DO
+            IF(setone[i] = settwo[j]) THEN
+                present := TRUE;
+                BREAK;
+            END
+        END_FOR
+        IF (NOT present) THEN
+            somme := somme + setone[i];
+        END_IF
+    END_FOR 
+    FOR i FROM 0 TO settwo.length-1 DO
+        present := FALSE;
+        FOR j FROM 0 TO setone.length-1 DO
+            IF(settwo[i] = setone[j]) THEN
+                present := TRUE;
+                BREAK;
+            END
+        END_FOR
+        IF (NOT present) THEN
+            somme := somme + settwo[i];
+        END_IF
+    END_FOR
+
+    Write(somme);
+END
+
+    //second sol
+
+ALGORITHM hash-okay
+VAR
+    keys : ARRAY_OF INTEGER[40];
+    setone , settwo : Array_Of integer[20];
+    htab : HASH_TABLE<INTEGER,INTEGER>;
+    i, j,k, somme : INTEGER;
+
+BEGIN
+    for i from 0 to setone.length -1 do 
+        for i from 0 to settwo.length -1 do 
+            read setone[i]
+            read settwo[i]
+    End for 
+
+    FOR i FROM 0 TO setone.length -1 STEP 1  DO
+        IF (htab.lookup(setone[i]) = TRUE) THEN
+            k := hatb.get(setone[i]);
+            htab.insert(setone[i],k+1);
+        ELSE
+            htab.insert(setone[i],1);
+        END_IF
+    END_FOR
+
+    FOR i FROM 0 TO settwo.length -1 STEP 1  DO
+        IF (htab.lookup(settwo[i]) = TRUE) THEN
+            k := htab.get(settwo[i]);
+            htab.insert(settwo[i],k+1);
+        ELSE
+            htab.insert(settwo[i],1);
+        END_IF
+    END_FOR
+
+    keys := dict.getKeys();
+    FOR i FROM 0 TO keys.length -1 STEP 1  DO
+        IF (hash.get(keys[i]) = 1) THEN
+            somme := somme +keys[i];
+        END_IF
+    END_FOR
+
+// Porblem 2
+    // solution 1
+ALGORITHM ok 
+VAR
+    setone, settwo: ARRAY_OF INTEGER;
+    i, j,: INTEGER; 
+    somme: INTEGER :=0 ;
+    present : BOOLEAN ;
+
+BEGIN
+    FOR i FROM 0 TO setone.length-1 DO
+        present := FALSE;
+        FOR j FROM 0 TO settwo.length-1 DO
+            IF(setone[i] = settwo[j]) THEN
+                present := TRUE;
+                BREAK;
+            END
+        END_FOR
+        IF (present) THEN
+            somme := somme + setone[i];
+        END_IF
+    END_FOR 
+    FOR i FROM 0 TO settwo.length-1 DO
+        present := FALSE;
+        FOR j FROM 0 TO setone.length-1 DO
+            IF(settwo[i] = setone[j]) THEN
+                present := TRUE;
+                BREAK;
+            END
+        END_FOR
+        IF (present) THEN
+            somme := somme + settwo[i];
+        END_IF
+    END_FOR
+
+    Write(somme);
+END
+
+/*solution 2*/
+
+ALGORITHM hash-ok
+VAR
+    keys : ARRAY_OF INTEGER[40];
+    setone , settwo : Array_Of integer[20];
+    htab : HASH_TABLE<INTEGER,INTEGER>;
+    i, j,k, somme : INTEGER;
+
+BEGIN
+    for i from 0 to setone.length -1 do 
+        for i from 0 to settwo.length -1 do 
+            read setone[i]
+            read settwo[i]
+    End for 
+ 
+    FOR i FROM 0 TO setone.length -1 STEP 1  DO
+        IF (htab.lookup(setone[i]) = false) THEN
+            k := hatb.get(setone[i]);
+            htab.insert(setone[i],k+1);
+        ELSE
+            htab.insert(setone[i],1);
+        END_IF
+    END_FOR
+
+    FOR i FROM 0 TO settwo.length -1 STEP 1  DO
+        IF (htab.lookup(settwo[i]) = false) THEN
+            k := htab.get(settwo[i]);
+            htab.insert(settwo[i],k+1);
+        ELSE
+            htab.insert(settwo[i],1);
+        END_IF
+    END_FOR
+     
+    keys := dict.getKeys();
+    FOR i FROM 0 TO keys.length -1 STEP 1  DO
+        IF (hash.get(keys[i]) = 1) THEN
+            somme := somme +keys[i];
+        END_IF
+    END_FOR
